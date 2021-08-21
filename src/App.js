@@ -20,7 +20,8 @@ function App() {
         </ul>
       </nav>
       <Switch>
-        <Route path="/" component={UserTable} />
+        <Route path="/" component={UserTable} exact />
+        <Route path="/:id" component={UserTable} />
       </Switch>
     </div>
   );

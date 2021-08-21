@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getUsers } from './api';
+import { getUsers, deleteUser } from './api';
 
 export const UserTable = () => {
   const [items, setItems] = useState([]);
@@ -13,6 +13,12 @@ export const UserTable = () => {
     };
     fetchItems();
   }, []);
+
+  const deleteRow = async (id) => {
+    let res = await deleteUser(id);
+    let data = items.filter((item) => item._id !== id);
+    setItems(data);
+  };
 
   return (
     <div className="container">
@@ -59,7 +65,12 @@ export const UserTable = () => {
                   <Link to={`/${user._id}`}>
                     <button class="btn btn-primary">Edit</button>
                   </Link>
-                  <button class="btn btn-danger">Delete</button>
+                  <button
+                    class="btn btn-danger"
+                    onClick={() => deleteRow(user._id)}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
