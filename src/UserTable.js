@@ -21,7 +21,7 @@ export const UserTable = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container" style={{ overflowX: 'auto' }}>
       <div className="mt-3">
         <h3>Users</h3>
         <table className="table table-striped mt-3">
