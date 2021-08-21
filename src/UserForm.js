@@ -6,7 +6,20 @@ import { religions, civilStatuses } from './lists';
 export const UserForm = ({ user, onSubmit }) => {
   const { register, handleSubmit } = useForm({
     defaultValues: {
-      firstName: user ? user.firstName : '',
+      firstName: user?.firstName || '',
+      middleName: user?.middleName || '',
+      lastName: user?.lastName || '',
+      email: user?.email || '',
+      mobile: user?.mobile || '',
+      sex: user?.sex || 'Female',
+      birthday:
+        new Date(user?.birthday).toLocaleDateString('en-CA') ||
+        Date.now().toLocaleDateString('en-CA'),
+      birthplace: user?.birthplace || '',
+      height: user?.height || '',
+      weight: user?.weight || '',
+      mother: user?.mother || '',
+      father: user?.father || '',
     },
   });
 
@@ -133,7 +146,7 @@ export const UserForm = ({ user, onSubmit }) => {
           <select
             className="form-select"
             name="religion"
-            {...register('religion')}
+            value={user?.religion}
           >
             {religions.map((religion) => (
               <option value={religion}>{religion}</option>
@@ -147,7 +160,7 @@ export const UserForm = ({ user, onSubmit }) => {
           <select
             className="form-select"
             name="civilStatus"
-            {...register('civilStatus')}
+            value={user?.civilStatus}
           >
             {civilStatuses.map((civilStatus) => (
               <option value={civilStatus}>{civilStatus}</option>

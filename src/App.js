@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
 import { UserTable } from './UserTable';
 import { AddUser } from './AddUser';
+import { EditUser } from './EditUser';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <Switch>
         <Route path="/" component={UserTable} exact />
         <Route path="/create" component={AddUser} exact />
+        <Route path="/:id" component={EditUser} />
       </Switch>
     </div>
   );
