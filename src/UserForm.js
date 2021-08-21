@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { religions, civilStatuses } from './lists';
+import { religionOptions, civilStatusOptions } from './lists';
 
 export const UserForm = ({ user, onSubmit }) => {
   const { register, handleSubmit } = useForm({
@@ -146,10 +146,15 @@ export const UserForm = ({ user, onSubmit }) => {
           <select
             className="form-select"
             name="religion"
-            value={user?.religion}
+            {...register('religion')}
           >
-            {religions.map((religion) => (
-              <option value={religion}>{religion}</option>
+            {religionOptions.map((religion) => (
+              <option
+                value={religion.value}
+                selected={religion.value === user?.religion}
+              >
+                {religion.label}
+              </option>
             ))}
           </select>
         </div>
@@ -160,10 +165,15 @@ export const UserForm = ({ user, onSubmit }) => {
           <select
             className="form-select"
             name="civilStatus"
-            value={user?.civilStatus}
+            {...register('civilStatus')}
           >
-            {civilStatuses.map((civilStatus) => (
-              <option value={civilStatus}>{civilStatus}</option>
+            {civilStatusOptions.map((civilStatus) => (
+              <option
+                value={civilStatus.value}
+                selected={civilStatus.value === user?.civilStatus}
+              >
+                {civilStatus.label}
+              </option>
             ))}
           </select>
         </div>
@@ -181,6 +191,7 @@ export const UserForm = ({ user, onSubmit }) => {
             type="date"
             name="birthday"
             id="birthday"
+            required
           />
         </div>
         <div className="col">
