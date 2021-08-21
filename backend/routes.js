@@ -8,6 +8,14 @@ module.exports = (app) => {
     } catch (err) {
       throw err;
     }
+    users = users.map((user) => {
+      user._doc.birthday = user.birthday
+        .toString()
+        .split(' ')
+        .slice(1, 4)
+        .join(' ');
+      return user;
+    });
     return res.json(users);
   });
 
