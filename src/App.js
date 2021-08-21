@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
 import { UserTable } from './UserTable';
+import { AddUser } from './AddUser';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
       </nav>
       <Switch>
         <Route path="/" component={UserTable} exact />
-        <Route path="/:id" component={UserTable} />
+        <Route path="/create" component={AddUser} exact />
       </Switch>
     </div>
   );
